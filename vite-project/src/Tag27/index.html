@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TypeScript Beispiele</title>
-    <script src="./main.ts"></script>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -32,5 +31,18 @@
     <input type="text" id="input" placeholder="Geben Sie etwas ein" />
     <h2>Konsolenausgabe:</h2>
     <pre id="console-output"></pre>
+
+    <script src="./main.ts"></script>
+    <script>
+      // Überschreiben der console.log-Funktion, um Ausgaben auch im HTML anzuzeigen
+      const consoleOutput = document.getElementById("console-output");
+      const originalConsoleLog = console.log;
+      console.log = function () {
+        originalConsoleLog.apply(console, arguments);
+        const args = Array.from(arguments);
+        consoleOutput.innerHTML += args.join(" ") + "\n";
+        console.log(arguments);
+      };
+    </script>
   </body>
 </html>
