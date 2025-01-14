@@ -114,3 +114,52 @@ document.addEventListener("DOMContentLoaded", (): void => {
     document.body.style.backgroundColor = colorWithoutSpaces;
   });
 });
+
+// Global counter
+let count: number = 0;
+
+// Helper function to convert decimal to hex
+function decToHex(dec: number): string {
+    const hex = dec.toString(16);
+    return hex.length === 1 ? "0" + hex : hex;
+}
+
+document.addEventListener("DOMContentLoaded", (): void => {
+    // Button color changers
+    const pinkButton = document.getElementById("'pink-button") as HTMLButtonElement;
+    const purpleButton = document.getElementById("'purple-button") as HTMLButtonElement;
+    const orangeButton = document.getElementById("'orange-button") as HTMLButtonElement;
+
+    // Slider elements
+    const redSlider = document.getElementById("red-slider") as HTMLInputElement;
+    const greenSlider = document.getElementById("green-slider") as HTMLInputElement;
+    const blueSlider = document.getElementById("blue-slider") as HTMLInputElement;
+
+    // Button click handlers
+    const handleButtonClick = (color: string): void => {
+        document.body.style.backgroundColor = color;
+        count++;
+        console.log(`Button clicked ${count} times`);
+    };
+
+    pinkButton.addEventListener("click", () => handleButtonClick("pink"));
+    purpleButton.addEventListener("click", () => handleButtonClick("purple"));
+    orangeButton.addEventListener("click", () => handleButtonClick("orange"));
+
+    // Slider change handler
+    const updateColorFromSliders = (): void => {
+        const red = parseInt(redSlider.value);
+        const green = parseInt(greenSlider.value);
+        const blue = parseInt(blueSlider.value);
+        
+        const hexColor = `#${decToHex(red)}${decToHex(green)}${decToHex(blue)}`;
+        document.body.style.backgroundColor = hexColor;
+        count++;
+        console.log(`Color changed ${count} times`);
+    };
+
+    // Add event listeners to sliders
+    redSlider.addEventListener("input", updateColorFromSliders);
+    greenSlider.addEventListener("input", updateColorFromSliders);
+    blueSlider.addEventListener("input", updateColorFromSliders);
+});
