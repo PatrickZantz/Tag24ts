@@ -1,0 +1,15 @@
+graph TD
+    A[Start] --> B[Benutzer füllt Bestellformular aus]
+    B --> C{Benutzer klickt 'Gericht hinzufügen' Button}
+    C --> |Ja| D{Ist Gerichtanzahl < Maximale Gerichte?}
+    D --> |Ja| E[Neue Gerichtkarte erstellen]
+    E --> F[Gerichtdetails zur Karte hinzufügen]
+    F --> G[Küchen-spezifisches Styling anwenden]
+    G --> H[Kartenerscheinung animieren]
+    H --> I[Karte zum Gerichte-Container hinzufügen]
+    I --> J[Gerichtanzahl erhöhen]
+    J --> K[Formularfelder leeren]
+    K --> L[Ende]
+    D --> |Nein| M[Maximallimit-Warnung anzeigen]
+    M --> L
+    C --> |Nein| B
